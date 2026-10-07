@@ -1,7 +1,13 @@
-class IValidator
-{
+class IValidator {
     public:
     virtual bool IsValid(int value) = 0;
+};
+
+class BaseValidator: public IValidator {
+    public:
+    bool IsValid(int value) {
+        return value > 0;
+    }
 };
 
 class Product {
