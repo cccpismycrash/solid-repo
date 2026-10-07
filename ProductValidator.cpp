@@ -10,6 +10,13 @@ class BaseValidator: public IValidator {
     }
 };
 
+class CustomerServiceValidator: public IValidator {
+    public:
+    bool IsValid(int value) {
+        return value > 100000;
+    }
+};
+
 class Product {
     public:
     
