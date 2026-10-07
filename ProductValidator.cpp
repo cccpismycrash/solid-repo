@@ -22,12 +22,19 @@ class Product {
     
     int price;
 
-    bool IsValid(bool isCustomerService) {
-        if (isCustomerService == true) {
-            return price > 100000;
-        }
-        return price > 0;
+    Product(int price, IValidator* validator) {
+        this->price = price;
+        this->_validator = validator;
     }
+
+    bool IsValid() {
+        if (_validator) {
+            return _validator->IsValid(price);
+        } 
+    }
+
+    private:
+    IValidator* _validator;
 };
 
 
