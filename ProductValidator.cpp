@@ -1,3 +1,9 @@
+class IValidator
+{
+    public:
+    virtual bool IsValid(int value) = 0;
+};
+
 class Product {
     public:
     
