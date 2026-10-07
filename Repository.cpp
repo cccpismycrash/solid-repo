@@ -1,0 +1,28 @@
+class AbstractEntity {
+
+};
+
+class AccountEntity : public AbstractEntity {
+
+};
+
+class RoleEntity : public AbstractEntity {
+
+};
+
+class Repository {
+    void Save(AbstractEntity entity) { 
+    
+        if (entity is AccountEntity) {
+            // специфические действия для AccountEntity
+        } 
+        
+        if (entity is RoleEntity) {
+            // специфические действия для RoleEntity
+        }
+    }
+};
+
+int main(int argc, char* argv[]) {
+
+}
