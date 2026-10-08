@@ -1,21 +1,22 @@
-#include string
+#include <string>
+#include <iostream>
 
 class ILogger {
     public:
     virtual void Log(std::string logText) = 0;
 }
 
-class Logger {
+class Logger: ILogger public {
     public:
-    void Log(string logText) {
-        // сохранить лог в файле
+    void Log(std::string logText) {
+        std::cout << "Logger: " << logText;
     }
 };
 
-class DatabaseLogger {
+class DatabaseLogger: ILogger public {
     public:
-    void Log(string logText) {
-         // сохранить лог в базе данных
+    void Log(std::string logText) {
+        std::cout << "DatabaseLogger: " << logText;
     }
 };
 
