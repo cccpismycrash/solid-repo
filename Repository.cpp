@@ -33,6 +33,28 @@ class Repository {
     }
 };
 
-int main(int argc, char* argv[]) {
+int main() {
+   int entityType;
 
+    std::cout <<
+        "Choose entity:\n"
+        "1 - Account entity\n"
+        "2 - Role entity\n"
+        "> ";
+
+    std::cin >> entityType;
+
+    if (entityType == 1) {
+        AccountEntity account;
+        Repository repository(&account);
+        repository.Save();
+    }
+    else if (entityType == 2) {
+        RoleEntity role;
+        Repository repository(&role);
+        repository.Save();
+    }
+    else {
+        std::cout << "Unknown entity\n";
+    }
 }
