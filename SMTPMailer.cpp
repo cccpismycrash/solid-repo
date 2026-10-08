@@ -1,29 +1,66 @@
-class Logger {
+#include <string>
+#include <iostream>
+
+class ILogger {
     public:
-    void Log(string logText) {
-        // сохранить лог в файле
+    virtual void Log(std::string logText) = 0;
+};
+
+class Logger: public ILogger {
+    public:
+    void Log(std::string logText) {
+        std::cout << "Logger: " << logText;
     }
 };
 
-class DatabaseLogger {
+class DatabaseLogger: public ILogger {
     public:
-    void Log(string logText) {
-         // сохранить лог в базе данных
+    void Log(std::string logText) {
+        std::cout << "DatabaseLogger: " << logText;
     }
 };
 
 class SmtpMailer {
     private:
-    Logger* logger; public:
-    SmtpMailer() {
-        logger = new Logger();
+    ILogger* _logger; 
+    
+    public:
+    SmtpMailer(ILogger* logger) {
+        _logger = logger;
     }
     
-    void SendMessage(string message) {
-        // отправка сообщения
+    void SendMessage(std::string message) {
+        std::cout << "SmtpMailer: " << message << "\n";
+        _logger->Log("Message was sent to reciever");
     }
 };
 
-int main(int argc, char* argv[]) {
+int main() {
+    int loggerType;
+    std::string message;
 
+    std::cout << "Enter message: ";
+    std::getline(std::cin, message);
+
+    std::cout <<
+        "Choose logger:\n"
+        "1 - File logger\n"
+        "2 - Database logger\n"
+        "> ";
+
+    std::cin >> loggerType;
+
+    if (loggerType == 1) {
+        Logger logger;
+        SmtpMailer mailer(&logger);
+        mailer.SendMessage(message);
+    }
+    else if (loggerType == 2) {
+        DatabaseLogger logger;
+        SmtpMailer mailer(&logger);
+        mailer.SendMessage(message);
+    }
+    else {
+        std::cout << "Unknown logger\n";
+    }
 }
