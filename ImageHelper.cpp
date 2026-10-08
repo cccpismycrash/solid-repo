@@ -22,40 +22,46 @@ class Account {
 
 class ImageFileSystem {
     public:
-    static void Save(Image image){
-        std::cout << "ImageSaver: save image in FS" 
+    static void Save(Image* image){
+        std::cout << "ImageSaver: save image in FS"
+        std::cout << "ImageSaver: image " << image->source << " was saved" 
     }
 
-    static int DeleteDuplicates() {
-        std::cout << "ImageDeleter: delete from FS all dulicated images and return count of deleted images" 
+    static void DeleteDuplicates() {
+        std::cout << "ImageDeleter: delete from FS all dulicated images and return count of deleted images"
+        std::cout << "ImageDeleter: 5 images deleted images"
     }
 };
 
 
 class AccountService {
     public:
-    static Image SetImageAsAccountPicture(Image image, Account account) {
-        std::cout << "AccountService: query DB to save a link to this image for account" 
+    static void SetImageAsAccountPicture(Image* image, Account* account) {
+        std::cout << "AccountService: query DB to save a link to this image for account"
+        std::cout << "AccountService: Image " << image->source << " was set on " << account->name << " account" 
     }   
 };
 
 
 class ImageEditor {
     public:
-    static Image Resize(Image image, int height, int width) {
+    static void Resize(Image* image, int height, int width) {
         std::cout << "ImageEditor: changing the image size" 
+        std::cout << "ImageEditor: Image " << image->source << " was resized " << height << "x" << width 
     }
 
-    static Image InvertColors(Image image){
+    static void InvertColors(Image* image){
         std::cout << "ImageEditor: changing colors on image" 
+        std::cout << "ImageEditor: colors on image " << image->soucre << " was inverted" 
     }
 };
 
 
 class ImageDownloader {
     public:
-    static byte* Download(Url imageUrl){
+    static void Download(std::string imageUrl){
         std::cout << "ImageDownloader: uploading a bitmap with an image using an HTTP request" 
+        std::cout << "ImageDownloader: image from " << imageUrl << " was downloaded" 
     }
 };
 
