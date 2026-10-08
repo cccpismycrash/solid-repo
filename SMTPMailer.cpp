@@ -4,16 +4,16 @@
 class ILogger {
     public:
     virtual void Log(std::string logText) = 0;
-}
+};
 
-class Logger: ILogger public {
+class Logger: public ILogger {
     public:
     void Log(std::string logText) {
         std::cout << "Logger: " << logText;
     }
 };
 
-class DatabaseLogger: ILogger public {
+class DatabaseLogger: public ILogger {
     public:
     void Log(std::string logText) {
         std::cout << "DatabaseLogger: " << logText;
@@ -22,13 +22,16 @@ class DatabaseLogger: ILogger public {
 
 class SmtpMailer {
     private:
-    Logger* logger; public:
-    SmtpMailer() {
-        logger = new Logger();
+    ILogger* _logger; 
+    
+    public:
+    SmtpMailer(ILogger* logger) {
+        _logger = logger;
     }
     
-    void SendMessage(string message) {
-        // отправка сообщения
+    void SendMessage(std::string message) {
+        std::cout << "SmtpMailer: " << message << "\n";
+        _logger->Log("Message was sent to reciever");
     }
 };
 
