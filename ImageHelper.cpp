@@ -1,30 +1,41 @@
-class ImageHelper { 
+class ImageFileSystem {
     public:
-    
     static void Save(Image image){
-        // сохранение изображение в файловой системе 
+        std::cout << "ImageSaver: save image in FS" 
     }
 
     static int DeleteDuplicates() {
-    // удалить из файловой системы все дублирующиеся изображения и вернуть количество удаленных
+        std::cout << "ImageDeleter: delete from FS all dulicated images and return count of deleted images" 
     }
+}
 
+
+class AccountService {
+    public:
     static Image SetImageAsAccountPicture(Image image, Account account) {
-        // запрос к базе данных для сохранения ссылки на это изображение для пользователя
-    }
+        std::cout << "AccountService: query DB to save a link to this image for account" 
+    }   
+}
 
+
+class ImageEditor {
+    public:
     static Image Resize(Image image, int height, int width) {
-        // изменение размеров изображения
+        std::cout << "ImageEditor: changing the image size" 
     }
 
     static Image InvertColors(Image image){
-        // изменить цвета на изображении
+        std::cout << "ImageEditor: changing colors on image" 
     }
+}
 
+
+class ImageDownloader {
+    public:
     static byte* Download(Url imageUrl){
-        // загрузка битового массива с изображением с помощью HTTP запроса
+        std::cout << "ImageDownloader: uploading a bitmap with an image using an HTTP request" 
     }
-};
+}
 
 
 int main(int argc, char* argv[]) {
