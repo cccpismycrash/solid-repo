@@ -1,14 +1,22 @@
+#include <iostream>
+
 class AbstractEntity {
     public:
     virtual void Save() = 0;
 };
 
 class AccountEntity : public AbstractEntity {
-
+    public:
+    void Save() {
+        std::cout << "AccountEntity: data was saved in repository";
+    }
 };
 
 class RoleEntity : public AbstractEntity {
-
+    public:
+    void Save() {
+        std::cout << "RoleEntity: data was saved in repository";
+    }
 };
 
 class Repository {
