@@ -20,15 +20,16 @@ class RoleEntity : public AbstractEntity {
 };
 
 class Repository {
-    void Save(AbstractEntity entity) { 
-    
-        if (entity is AccountEntity) {
-            // специфические действия для AccountEntity
-        } 
-        
-        if (entity is RoleEntity) {
-            // специфические действия для RoleEntity
-        }
+    private:
+    AbstractEntity* _entity;
+
+    public:
+    Repository(AbstractEntity* entity) {
+        this->_entity = entity;
+    }
+
+    void Save() { 
+        _entity->Save();
     }
 };
 
