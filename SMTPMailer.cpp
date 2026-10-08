@@ -1,3 +1,10 @@
+#include string
+
+class ILogger {
+    public:
+    virtual void Log(std::string logText) = 0;
+}
+
 class Logger {
     public:
     void Log(string logText) {
