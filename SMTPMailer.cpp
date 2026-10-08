@@ -35,6 +35,32 @@ class SmtpMailer {
     }
 };
 
-int main(int argc, char* argv[]) {
+int main() {
+    int loggerType;
+    std::string message;
 
+    std::cout << "Enter message: ";
+    std::getline(std::cin, message);
+
+    std::cout <<
+        "Choose logger:\n"
+        "1 - File logger\n"
+        "2 - Database logger\n"
+        "> ";
+
+    std::cin >> loggerType;
+
+    if (loggerType == 1) {
+        Logger logger;
+        SmtpMailer mailer(&logger);
+        mailer.SendMessage(message);
+    }
+    else if (loggerType == 2) {
+        DatabaseLogger logger;
+        SmtpMailer mailer(&logger);
+        mailer.SendMessage(message);
+    }
+    else {
+        std::cout << "Unknown logger\n";
+    }
 }
