@@ -1,5 +1,6 @@
 class AbstractEntity {
-
+    public:
+    virtual void Save() = 0;
 };
 
 class AccountEntity : public AbstractEntity {
